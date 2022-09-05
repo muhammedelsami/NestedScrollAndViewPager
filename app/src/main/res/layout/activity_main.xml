@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <LinearLayout
                 android:id="@+id/image"
                 android:layout_width="match_parent"
@@ -43,19 +42,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/new_tabs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/new_tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#89ABCF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+        android:layout_height="wrap_content"
+        android:background="#89ABCF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

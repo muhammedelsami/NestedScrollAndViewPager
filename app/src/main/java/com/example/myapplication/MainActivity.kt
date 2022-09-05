@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -15,12 +13,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-
 class MainActivity : AppCompatActivity() {
 
-    lateinit var nsd : NestedScrollView
-    lateinit var tabLayout : TabLayout
-    lateinit var newTabLayout : TabLayout
+    lateinit var nsd: NestedScrollView
+    lateinit var tabLayout: TabLayout
+    lateinit var newTabLayout: TabLayout
+    private var fragments = mutableListOf(Page1(), Page2())
+
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         nsd = findViewById(R.id.nested_id)
 
 
-        val adapter = ViewPagerAdapter(this)
+        val adapter = ViewPagerAdapter(this, fragments)
         viewPager2.adapter = adapter
 
         TabLayoutMediator(
@@ -61,11 +60,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun NestedScrollView.isViewVisible(view: View) : Boolean {
-        val  scrollBounds = Rect()
+    private fun NestedScrollView.isViewVisible(view: View): Boolean {
+        val scrollBounds = Rect()
         this.getDrawingRect(scrollBounds)
         val top = view.y
-        val bottom = view.height + top
         return scrollBounds.top > top
     }
 }

@@ -5,15 +5,13 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity, var fragments: MutableList<Fragment>) :
+    FragmentStateAdapter(fragmentActivity) {
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> page1()
-            else -> page2()
-        }
+        return fragments[position]
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return fragments.size
     }
 }
