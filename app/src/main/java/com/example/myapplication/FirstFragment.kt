@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class Page1 : Fragment() {
+class FirstFragment : Fragment() {
 
     lateinit var recyclerAdapter: MainRecyclerAdapter
     lateinit var recyclerView: RecyclerView
@@ -105,7 +105,7 @@ class Page1 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page1, container, false)
+        return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

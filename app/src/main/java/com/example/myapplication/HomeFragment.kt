@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
     lateinit var nsd: NestedScrollView
     lateinit var tabLayout: TabLayout
     lateinit var newTabLayout: TabLayout
-    private var fragments = mutableListOf(Page1(), Page2())
+    private var fragments = mutableListOf(FirstFragment(), SecondFragment())
 
 
     override fun onCreateView(
