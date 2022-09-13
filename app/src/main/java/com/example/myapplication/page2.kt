@@ -5,8 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class Page2 : Fragment() {
+
+    lateinit var recyclerAdapter: MainRecyclerAdapter
+    lateinit var recyclerView: RecyclerView
+    var TAG = "muhammed"
+
+    val cities = arrayListOf(
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -14,5 +32,21 @@ class Page2 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_page2, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = view.findViewById(R.id.second_fr_recyclerView)
+
+        val gr = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = gr
+        recyclerAdapter = MainRecyclerAdapter(cities)
+        recyclerView.adapter = recyclerAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        view?.requestLayout()
     }
 }

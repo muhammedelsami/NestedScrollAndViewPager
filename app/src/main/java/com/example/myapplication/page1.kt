@@ -114,14 +114,14 @@ class Page1 : Fragment() {
 
         recyclerView = view.findViewById(R.id.fr_recyclerView)
 
-//        val layoutManager = LinearLayoutManager(context)
-//        recyclerView.layoutManager = layoutManager
-//        recyclerAdapter = MainRecyclerAdapter(sehirler)
-//        recyclerView.adapter = recyclerAdapter
-
         val gr = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = gr
         recyclerAdapter = MainRecyclerAdapter(cities)
         recyclerView.adapter = recyclerAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        view?.requestLayout()
     }
 }
