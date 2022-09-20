@@ -46,6 +46,5 @@ class SecondFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        view?.requestLayout()
     }
 }
