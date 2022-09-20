@@ -3,13 +3,14 @@ package com.example.myapplication
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -57,6 +58,25 @@ class HomeFragment : Fragment() {
             tab.text = "Tab " + (position + 1)
         }.attach()
 
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                val view1 = fragments[position].view
+                    view1?.post {
+                        val wMeasureSpec =
+                            View.MeasureSpec.makeMeasureSpec(view1.width, View.MeasureSpec.EXACTLY)
+                        val hMeasureSpec =
+                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+                        view1.measure(wMeasureSpec, hMeasureSpec)
+
+                        if (viewPager2.layoutParams.height != view1.measuredHeight) {
+                            viewPager2.layoutParams =
+                                (viewPager2.layoutParams as ConstraintLayout.LayoutParams)
+                                    .also { lp -> lp.height = view1.measuredHeight }
+                        }
+                    }
+            }
+        })
 
         hideShowNewTabLayout()
     }
